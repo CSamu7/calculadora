@@ -26,6 +26,16 @@ export default function calculator() {
     let result;
     const number = parseFloat(getScreenValue());
 
+    if (input === "-" && number === 0 && getScreenValue().length === 1) {
+      updateNumber("-");
+      return;
+    }
+
+    if (isNaN(number)) {
+      updateScreen();
+      return;
+    }
+
     addNumber(number);
     updateHistory(number);
     addLastOperation(input);

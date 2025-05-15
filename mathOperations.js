@@ -32,6 +32,8 @@ export default function mathOperations() {
   const square = (history) => {
     const number1 = history.lastNumbers.at(-1) ?? 0;
 
+    if (Math.sign(number1) === -1) throw new Error("SIN SOPORTE");
+
     return Math.sqrt(number1);
   };
 
