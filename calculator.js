@@ -45,7 +45,6 @@ export default function calculator() {
       if (result === number) {
         updateScreen();
       } else {
-        addNumber(result);
         updateScreen(result);
       }
     }
