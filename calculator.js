@@ -8,7 +8,7 @@ export default function calculator() {
   const mathOperation = ["+", "/", "*", "-", "=", "Enter", "x", "÷", "√", "%"];
   const specialOperation = [".", "AC", "Backspace"];
 
-  const { mathOperationsDict } = mathOperations();
+  const { mathOperationsDict, oneNumberOperation } = mathOperations();
   const { reset } = formatOperations();
   const { updateScreen, getScreenValue, updateHistory, updateNumber } =
     calculatorScreen();
@@ -53,10 +53,16 @@ export default function calculator() {
     let result;
     const number = parseFloat(getScreenValue());
 
-    if (number !== history.lastNumbers.at(-1)) addNumber(number);
-
+    addNumber(number);
     updateHistory(number);
     addLastOperation(input);
+
+    const lastOperation = history.lastOperations.at(-2) ?? "";
+
+    if (lastOperation !== input && !oneNumberOperation.includes(input)) {
+      updateScreen();
+      return;
+    }
 
     try {
       result = mathOperationsDict[input](history);

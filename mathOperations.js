@@ -24,13 +24,6 @@ export default function mathOperations() {
     const number1 = history.lastNumbers.at(-1) ?? 1;
     const number2 = history.lastNumbers.at(-2);
 
-    if (!number2) return number1;
-
-    if (number1 === history.lastNumbers.at(-1)) return 0;
-
-    console.log(history);
-    console.log(number1, number2);
-
     if (number1 === 0) throw new Error("ERROR");
 
     return number2 / number1;
@@ -77,5 +70,7 @@ export default function mathOperations() {
     "%": getPercentage,
   };
 
-  return { mathOperationsDict };
+  const oneNumberOperation = ["%", "=", "Enter", "√"];
+
+  return { mathOperationsDict, oneNumberOperation };
 }
